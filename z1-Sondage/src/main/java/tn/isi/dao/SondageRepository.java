@@ -41,5 +41,7 @@ public interface SondageRepository extends JpaRepository<Sondage, Long> {
 	public Sondage findOneByTitre(String titre);
 
 	public Sondage findByTitre(String titre);
+	
+	public Sondage findOneById(Long id);
 
 }

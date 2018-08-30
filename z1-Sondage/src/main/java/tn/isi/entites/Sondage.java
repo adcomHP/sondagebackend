@@ -14,7 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,7 +34,6 @@ public class Sondage implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titre;
-	private String photosnd;
 	private String descriptions;
 	private Date dateCreation;
 	private boolean accepted;
@@ -49,6 +51,9 @@ public class Sondage implements Serializable {
 	@ManyToOne
 	private Categorie categorie;
 
+	@Transient
+	private MultipartFile sndImage;
+	
 	/*********** sans parametre *********************/
 	public Sondage() {
 		super();
@@ -56,14 +61,7 @@ public class Sondage implements Serializable {
 	}
 
 	/******************* get +set ******************/
-	public String getPhotosnd() {
-		return photosnd;
-	}
-
-	public void setPhotosnd(String photosnd) {
-		this.photosnd = photosnd;
-	}
-
+	
 	public Categorie getCategorie() {
 		return categorie;
 	}
@@ -137,42 +135,27 @@ public class Sondage implements Serializable {
 		this.users_jawbou_3aliya = users_jawbou_3aliya;
 	}
 
+	public MultipartFile getSndImage() {
+		return sndImage;
+	}
+
+	public void setSndImage(MultipartFile sndImage) {
+		this.sndImage = sndImage;
+	}
+
 	/************** AVEC PARAMETREE *********************/
-
-	
-	public Sondage(String photosnd, String titre, String descriptions) {
-		super();
-		this.photosnd = photosnd;
-		this.titre = titre;
-		this.descriptions = descriptions;
-	}
-
-	public Sondage(String titre, String photosnd, String descriptions, Date dateCreation, User owner,
-			Collection<Question> questions) {
-		super();
-		this.titre = titre;
-		this.photosnd = photosnd;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-		this.owner = owner;
-		this.questions = questions;
-	}
-
-	public Sondage(String titre, String photosnd, String descriptions, Date dateCreation, boolean accepted, User owner,
-			Collection<Question> questions) {
-		super();
-		this.titre = titre;
-		this.photosnd = photosnd;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-		this.accepted = accepted;
-		this.owner = owner;
-		this.questions = questions;
-	}
-
+ 	
 	public Sondage(String titre, Collection<Question> questions) {
 		super();
 		this.titre = titre;
+		this.questions = questions;
+	}
+
+	public Sondage(String titre, Date dateCreation, User owner, Collection<Question> questions) {
+		super();
+		this.titre = titre;
+		this.dateCreation = dateCreation;
+		this.owner = owner;
 		this.questions = questions;
 	}
 
@@ -189,18 +172,6 @@ public class Sondage implements Serializable {
 	}
 
 	
-	public Sondage(String titre, String photosnd, String descriptions, Date dateCreation, User owner,
-			Collection<Question> questions, Collection<User> users_jawbou_3aliya) {
-		super();
-		this.titre = titre;
-		this.photosnd = photosnd;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-		this.owner = owner;
-		this.questions = questions;
-		this.users_jawbou_3aliya = users_jawbou_3aliya;
-	}
-
 	public Sondage(String titre, String descriptions, Date dateCreation, User owner, Collection<Question> questions,
 			Collection<User> users_jawbou_3aliya) {
 		super();
@@ -258,61 +229,8 @@ public class Sondage implements Serializable {
 		this.categorie = categorie;
 	}
 
-	public Sondage(String photosnd, String titre, String descriptions, Date dateCreation, boolean accepted, User owner,
-			Collection<Question> questions, Collection<User> users_jawbou_3aliya, Categorie categorie) {
-		super();
-		this.photosnd = photosnd;
-		this.titre = titre;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-		this.accepted = accepted;
-		this.owner = owner;
-		this.questions = questions;
-		this.users_jawbou_3aliya = users_jawbou_3aliya;
-		this.categorie = categorie;
-	}
+	
 
-	public Sondage(String photosnd, String titre, String descriptions, Date dateCreation) {
-		super();
-		this.photosnd = photosnd;
-		this.titre = titre;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-	}
-
-	public Sondage(String photosnd, String titre, String descriptions, Date dateCreation, boolean accepted,
-			User owner) {
-		super();
-		this.photosnd = photosnd;
-		this.titre = titre;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-		this.accepted = accepted;
-		this.owner = owner;
-	}
-
-	public Sondage(Long id, String photosnd, String titre, String descriptions, Date dateCreation, boolean accepted,
-			User owner, Collection<User> users_jawbou_3aliya, Categorie categorie) {
-		super();
-		this.id = id;
-		this.photosnd = photosnd;
-		this.titre = titre;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-		this.accepted = accepted;
-		this.owner = owner;
-		this.users_jawbou_3aliya = users_jawbou_3aliya;
-		this.categorie = categorie;
-	}
-
-	public Sondage(String photosnd, String titre, String descriptions, Date dateCreation, boolean accepted) {
-		super();
-		this.photosnd = photosnd;
-		this.titre = titre;
-		this.descriptions = descriptions;
-		this.dateCreation = dateCreation;
-		this.accepted = accepted;
-	}
 
 	
 

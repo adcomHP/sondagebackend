@@ -19,7 +19,6 @@ import tn.isi.entites.Sondage;
 import tn.isi.entites.User;
 
 @SpringBootApplication
-
 public class Z1SondageApplication {
 
 	public static void main(String[] args) {
@@ -134,10 +133,10 @@ public class Z1SondageApplication {
 		Collection<Question> les_qus_MG_Sondage = new ArrayList<Question>();
 		les_qus_MG_Sondage.add(MG_Questions);
 
-		Sondage Sondage_s1 = sondageRepository.save(new Sondage("sondage_s1", "photosnd1", "sondage description", new Date(), ADMIN, les_qus_s1));
-		Sondage Sondage_s2 = sondageRepository.save(new Sondage("sondagae_s2", les_qus_s2));
-		Sondage sondage_s3 = sondageRepository.save(new Sondage("photo", "sondage_s3", "testtest", new Date()));
-		Sondage MG_Sondage = sondageRepository.save(new Sondage("sondage_MG", "photosnd1", "Magazin generale", new Date(), ADMIN, les_qus_MG_Sondage));
+		Sondage Sondage_s1 = sondageRepository.save(new Sondage("sondages1", new Date(), ADMIN, les_qus_s1));
+		Sondage Sondage_s2 = sondageRepository.save(new Sondage("sondagae_s2", les_qus_s2));	
+		Sondage sondage_s3 = sondageRepository.save(new Sondage("sondage_s3", "testtest", new Date()));
+		Sondage MG_Sondage = sondageRepository.save(new Sondage("sondage_MG", new Date(), ADMIN, les_qus_MG_Sondage));
 
 	   	q1_s1.setSondage(Sondage_s1);
 		q2_s1.setSondage(Sondage_s1);
